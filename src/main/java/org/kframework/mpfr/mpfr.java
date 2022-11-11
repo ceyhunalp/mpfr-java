@@ -287,6 +287,15 @@ final class mpfr {
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,
             @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_log1p(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,
+            @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_hypot(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t x,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t y,
+            @JniArg(cast="mpfr_rnd_t") int rnd);
     static native int mpfr_exp(
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,

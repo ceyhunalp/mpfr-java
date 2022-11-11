@@ -2631,6 +2631,36 @@ public class BigFloat extends Number implements Comparable<BigFloat> {
             }
         }.execute(mc);
     }
+
+    public BigFloat log10(BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_log10(rop, op, rnd);
+            }
+        }.execute(mc);
+    }
+
+    public BigFloat log1p(BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_log1p(rop, op, rnd);
+            }
+        }.execute(mc);
+    }
+
+    public static BigFloat hypot(final BigFloat x, final BigFloat y, BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_hypot(rop, x.op, y.op, rnd);
+            }
+        }.execute(mc);
+    }
        
     /**
      * Returns the {@code BigFloat} value which represents {@code this}

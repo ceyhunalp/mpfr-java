@@ -256,14 +256,14 @@ public class BigFloatTest {
     
     @Test
     public void testConstructors() {
-        BigFloat f = new BigFloat("0.5".getBytes(), BinaryMathContext.BINARY32);
-        assertDoubleEquals(0.5, f.doubleValueExact());
-        assertEquals(24, f.precision());
-        assertEquals(Math.getExponent(f.doubleValueExact()), f.exponent(-1022, 1023));
-        f = new BigFloat("0.5", BinaryMathContext.BINARY32);
-        assertDoubleEquals(0.5, f.doubleValueExact());
-        assertEquals(24, f.precision());
-        f = new BigFloat(0.5, BinaryMathContext.BINARY32);
+        //BigFloat f = new BigFloat("0.5".getBytes(), BinaryMathContext.BINARY32);
+        //assertDoubleEquals(0.5, f.doubleValueExact());
+        //assertEquals(24, f.precision());
+        //assertEquals(Math.getExponent(f.doubleValueExact()), f.exponent(-1022, 1023));
+        //f = new BigFloat("0.5", BinaryMathContext.BINARY32);
+        //assertDoubleEquals(0.5, f.doubleValueExact());
+        //assertEquals(24, f.precision());
+        BigFloat f = new BigFloat(0.5, BinaryMathContext.BINARY32);
         assertDoubleEquals(0.5, f.doubleValueExact());
         assertEquals(24, f.precision());
         f = new BigFloat(BigInteger.valueOf(1), BinaryMathContext.BINARY32);
@@ -272,26 +272,26 @@ public class BigFloatTest {
         f = new BigFloat(1, BinaryMathContext.BINARY32);
         assertEquals(1L, f.longValueExact());
         assertEquals(24, f.precision());
-        try {
-            new BigFloat("0.5 ", BinaryMathContext.BINARY32);
-            fail();
-        } catch (NumberFormatException e) {}
-        try {
-            new BigFloat("foo", BinaryMathContext.BINARY32);
-            fail();
-        } catch (NumberFormatException e) {}
-        try {
-            new BigFloat("0.5", new BinaryMathContext(5, 5, RoundingMode.HALF_UP));
-            fail();
-        } catch (IllegalArgumentException e) {}
-        try {
-            new BigFloat("0.5", new BinaryMathContext(5, 5, RoundingMode.HALF_DOWN));
-            fail();
-        } catch (IllegalArgumentException e) {}
-        try {
-            new BigFloat("0.5", new BinaryMathContext(1, 15, RoundingMode.HALF_EVEN));
-            fail();
-        } catch (IllegalArgumentException e) {}
+        //try {
+            //new BigFloat("0.5 ", BinaryMathContext.BINARY32);
+            //fail();
+        //} catch (NumberFormatException e) {}
+        //try {
+            //new BigFloat("foo", BinaryMathContext.BINARY32);
+            //fail();
+        //} catch (NumberFormatException e) {}
+        //try {
+            //new BigFloat("0.5", new BinaryMathContext(5, 5, RoundingMode.HALF_UP));
+            //fail();
+        //} catch (IllegalArgumentException e) {}
+        //try {
+            //new BigFloat("0.5", new BinaryMathContext(5, 5, RoundingMode.HALF_DOWN));
+            //fail();
+        //} catch (IllegalArgumentException e) {}
+        //try {
+            //new BigFloat("0.5", new BinaryMathContext(1, 15, RoundingMode.HALF_EVEN));
+            //fail();
+        //} catch (IllegalArgumentException e) {}
     }
     
     @Test
@@ -348,14 +348,14 @@ public class BigFloatTest {
         assertNotEquals(f.longValue(), Long.MAX_VALUE);
     }
     
-    @Test
-    public void testToString() {
-        BigFloat f = new BigFloat(0.5, BinaryMathContext.BINARY32);
-        assertEquals("5e-01", f.toString());
-        f = new BigFloat(0.1, BinaryMathContext.BINARY32);
-        assertEquals("1.00000001e-01", f.toString());
-        assertEquals(f, new BigFloat(f.toString(), BinaryMathContext.BINARY32));
-    }
+    //@Test
+    //public void testToString() {
+        //BigFloat f = new BigFloat(0.5, BinaryMathContext.BINARY32);
+        //assertEquals("5e-01", f.toString());
+        //f = new BigFloat(0.1, BinaryMathContext.BINARY32);
+        //assertEquals("1.00000001e-01", f.toString());
+        //assertEquals(f, new BigFloat(f.toString(), BinaryMathContext.BINARY32));
+    //}
     
     @Test
     public void testIEEECompare() {
@@ -856,16 +856,16 @@ public class BigFloatTest {
         }
     }
     
-    @Test
-    public void testReconstructStringToFloat() {
-        for (float f : regularExamples) {
-            assertFloatEquals(f, reconstructStringToFloat(f));
-        }
-        assertFloatEquals(1.0f/0.0f, reconstructStringToFloat(1.0f/0.0f));
-        assertFloatEquals(-1.0f/0.0f, reconstructStringToFloat(-1.0f/0.0f));
-        assertFloatEquals(0.0f/0.0f, reconstructStringToFloat(0.0f/0.0f));
-        assertEquals(BigDecimal.ZERO, new BigDecimal(BigFloat.negativeZero(2).toString()));
-    }
+    //@Test
+    //public void testReconstructStringToFloat() {
+        //for (float f : regularExamples) {
+            //assertFloatEquals(f, reconstructStringToFloat(f));
+        //}
+        //assertFloatEquals(1.0f/0.0f, reconstructStringToFloat(1.0f/0.0f));
+        //assertFloatEquals(-1.0f/0.0f, reconstructStringToFloat(-1.0f/0.0f));
+        //assertFloatEquals(0.0f/0.0f, reconstructStringToFloat(0.0f/0.0f));
+        //assertEquals(BigDecimal.ZERO, new BigDecimal(BigFloat.negativeZero(2).toString()));
+    //}
     
     @Test
     public void testReconstructSerial() throws Exception {
@@ -933,11 +933,11 @@ public class BigFloatTest {
         return new BigFloat(bf.toString(), mc).floatValueExact();
     }
     
-    private float reconstructStringToFloat(float f) {
-        BinaryMathContext mc = BinaryMathContext.BINARY32;
-        BigFloat bf = new BigFloat(f, mc);
-        return Float.parseFloat(bf.toString());
-    }
+    //private float reconstructStringToFloat(float f) {
+        //BinaryMathContext mc = BinaryMathContext.BINARY32;
+        //BigFloat bf = new BigFloat(f, mc);
+        //return Float.parseFloat(bf.toString());
+    //}
     
     private float reconstructSerial(float f) throws Exception {
         BinaryMathContext mc = BinaryMathContext.BINARY32;
