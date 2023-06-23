@@ -29,6 +29,7 @@
           <formats>
             <format>html</format>
           </formats>
+          <check/>
         </configuration>
       </plugin>
       <plugin>

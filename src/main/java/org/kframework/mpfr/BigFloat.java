@@ -1747,7 +1747,16 @@ public class BigFloat extends Number implements Comparable<BigFloat> {
     public BigFloat cbrt(BinaryMathContext mc) {
         return root(3, mc);
     }
-    
+
+    public BigFloat scalb(final int scaleFactor, BinaryMathContext mc) {
+        return new Operation() {
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_mul_2si(rop, op, scaleFactor, rnd);
+            }
+        }.execute(mc);
+    }
+
     /**
      * Returns a {@code BigFloat} whose value is the absolute value of this
      * {@code BigFloat}, and whose precision is {@code this.precision()}.
@@ -1792,6 +1801,16 @@ public class BigFloat extends Number implements Comparable<BigFloat> {
     public BigFloat negate() {
         return negate(new BinaryMathContext(precision(), eminMin(precision()), 
                 EMAX_MAX, RoundingMode.UNNECESSARY));
+    }
+
+    public static BigFloat copysign(final BigFloat magnitude, final BigFloat sign, BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_copysign(rop, magnitude.op, sign.op, rnd);
+            }
+        }.execute(mc);
     }
 
     /**
@@ -1895,14 +1914,24 @@ public class BigFloat extends Number implements Comparable<BigFloat> {
      */
     public BigFloat round(BinaryMathContext mc) {
         return new Operation() {
-            
+
             @Override
             public int doIt(mpfr_t rop, int rnd) {
                 return mpfr_set(rop, op, rnd);
             }
         }.execute(mc);
     }
-    
+
+    public BigFloat roundJava(BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_round(rop, op);
+            }
+        }.execute(mc);
+    }
+
     /**
      * Returns the trigonometric sine of an angle, with rounding
      * according to the context settings. Special cases:
@@ -2600,6 +2629,16 @@ public class BigFloat extends Number implements Comparable<BigFloat> {
             }
         }.execute(mc);
     }
+
+    public BigFloat expm1(BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_expm1(rop, op, rnd);
+            }
+        }.execute(mc);
+    }
     
     /**
      * Returns the natural logarithm (base <i>e</i>) of a
@@ -2691,7 +2730,27 @@ public class BigFloat extends Number implements Comparable<BigFloat> {
             }
         }.execute(mc);
     }
-    
+
+    public BigFloat ceil(BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_ceil(rop, op);
+            }
+        }.execute(mc);
+    }
+
+    public BigFloat floor(BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_floor(rop, op);
+            }
+        }.execute(mc);
+    }
+
     /**
      * Returns the greater of two {@code BigFloat} values, in the precision
      * specified by context settings. That is, the result is the argument

@@ -304,6 +304,23 @@ final class mpfr {
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,
             @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_expm1(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,
+            @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_mul_2si(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op1,
+            int op2,
+            @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_copysign(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op1,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op2,
+            @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_round(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op);
     static native int mpfr_sin(
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,
@@ -385,6 +402,12 @@ final class mpfr {
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,
             @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_ceil(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op);
+    static native int mpfr_floor(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op);
     static native int mpfr_min(
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op1,
@@ -457,7 +480,7 @@ final class mpfr {
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op,
             boolean s,
             @JniArg(cast="mpfr_rnd_t") int rnd);
-    
+
     @JniField(flags={CONSTANT})
     static int MPFR_RNDN; // round to nearest, with ties to even
     @JniField(flags={CONSTANT})
