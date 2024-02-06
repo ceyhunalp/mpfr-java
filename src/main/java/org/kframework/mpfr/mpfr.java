@@ -256,6 +256,12 @@ final class mpfr {
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op1,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op2,
             @JniArg(cast="mpfr_rnd_t") int rnd);
+    static native int mpfr_fma(
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t rop,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op1,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op2,
+            @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t op3,
+            @JniArg(cast="mpfr_rnd_t") int rnd);
     static native int mpfr_remainder(
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t r,
             @JniArg(cast="mpfr_ptr", flags={POINTER_ARG}) mpfr_t x,

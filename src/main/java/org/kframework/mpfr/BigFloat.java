@@ -1324,7 +1324,18 @@ public class BigFloat extends Number implements Comparable<BigFloat> {
             }
         }.execute(mc);
     }
-    
+
+    public static BigFloat fma(final BigFloat a, final BigFloat b,
+                               final BigFloat c,BinaryMathContext mc) {
+        return new Operation() {
+
+            @Override
+            public int doIt(mpfr_t rop, int rnd) {
+                return mpfr_fma(rop, a.op, b.op, c.op, rnd);
+            }
+        }.execute(mc);
+    }
+
     /**
      * Returns a {@code BigFloat} whose value is {@code (this - subtrahend)},
      * whose precision is equal to
